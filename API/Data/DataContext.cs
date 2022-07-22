@@ -5,11 +5,11 @@ namespace API.Data
 {
     public class DataContext : DbContext
     {
-        public DataContext() : base()
-        {
-        }
+        // public DataContext() : base()
+        // {
+        // }
 
-        public DataContext(DbContextOptions options) : base(options)
+        public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
         }
 
@@ -17,7 +17,13 @@ namespace API.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlite("Data source=datingapp.db");
+                var configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+
+                var connectionString = configuration.GetConnectionString("DefaultConnection");
+                optionsBuilder.UseSqlite(connectionString);
             }
         }
 
