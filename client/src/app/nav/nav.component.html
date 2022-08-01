@@ -37,7 +37,7 @@
         >Welcome {{ user?.username || "user" | titlecase }}</a
       >
       <div class="dropdown-menu mt-3" id="dropdown-profile" *dropdownMenu>
-        <a class="dropdown-item">Edit Profile</a>
+        <a class="dropdown-item" routerLink="/member/edit">Edit Profile</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item" (click)="logout()">Logout</a>
       </div>
