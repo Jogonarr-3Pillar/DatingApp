@@ -1,5 +1,6 @@
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -46,11 +47,29 @@ namespace API.Data
                 .SingleOrDefaultAsync(x => x.UserName == username);
         }
 
-        public async Task<IEnumerable<MemberDto>> GetMembersAsync()
+        public async Task<PagedList<MemberDto>> GetMembersAsync(UserParams userParams)
         {
-            return await _context.Users
+            var query = _context.Users.AsQueryable();
+
+            var minDateOfBirth = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+            var maxDateOfBirth = DateTime.Today.AddYears(-userParams.MinAge);
+
+            query = query
+                .Where(u => u.UserName != userParams.CurrentUsername)
+                .Where(u => u.Gender == userParams.Gender)
+                .Where(u => u.DateOfBirth >= minDateOfBirth && u.DateOfBirth <= maxDateOfBirth);
+
+            query = userParams.OrderBy switch
+            {
+                "created" => query.OrderByDescending(u => u.Created),
+                _ => query.OrderByDescending(u => u.LastActive),
+            };
+
+            var source = query
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
-                .ToListAsync();
+                .AsNoTracking();
+
+            return await PagedList<MemberDto>.CreateAsync(source, userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<MemberDto> GetMemberAsync(string username)

@@ -30,12 +30,15 @@
       dropdown
       *ngIf="accountService.currentUser$ | async as user"
     >
-      <img src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}" />
+      <img
+        src="{{ user.photoUrl || './assets/user.png' }}"
+        alt="{{ user.knownAs }}"
+      />
       <a
         class="dropdown-toggle text-light ms-2"
         dropdownToggle
         aria-controls="dropdown-profile"
-        >Welcome {{ user?.username || "user" | titlecase }}</a
+        >Welcome {{ user?.knownAs || "user" | titlecase }}</a
       >
       <div class="dropdown-menu mt-3" id="dropdown-profile" *dropdownMenu>
         <a class="dropdown-item" routerLink="/member/edit">Edit Profile</a>
