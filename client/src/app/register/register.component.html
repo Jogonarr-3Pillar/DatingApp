@@ -5,15 +5,21 @@
 >
   <h2 class="text-center text-primary">Sign up</h2>
   <hr />
-  <div style="margin-bottom: 1rem">
-    <label class="control-label" style="margin-right: 10px">I am a: </label>
-    <label class="radio-inline">
-      <input type="radio" value="male" formControlName="gender" /> Male
-    </label>
-    <label class="radio-inline">
+  <div class="mb-3">
+    <label style="margin-right: 10px">I am a: </label>
+    <label class="form-check-label">
       <input
         type="radio"
-        class="ms-3"
+        class="form-check-input"
+        value="male"
+        formControlName="gender"
+      />
+      Male
+    </label>
+    <label class="form-check-label">
+      <input
+        type="radio"
+        class="form-check-input ms-3"
         value="female"
         formControlName="gender"
       />

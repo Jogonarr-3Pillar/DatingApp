@@ -40,7 +40,7 @@
         alt="{{ user.knownAs }}"
       />
       <a
-        class="dropdown-toggle text-light ms-2"
+        class="dropdown-toggle text-light ms-2 text-decoration-none"
         dropdownToggle
         aria-controls="dropdown-profile"
         >Welcome {{ user?.knownAs || user.username | titlecase }}</a
@@ -60,7 +60,7 @@
       autocomplete="off"
     >
       <input
-        class="form-control me-2"
+        class="form-control me-sm-2"
         type="text"
         placeholder="Username"
         aria-label="Username"
@@ -68,7 +68,7 @@
         [(ngModel)]="model.username"
       />
       <input
-        class="form-control me-2"
+        class="form-control me-sm-2"
         type="password"
         placeholder="Password"
         aria-label="Password"

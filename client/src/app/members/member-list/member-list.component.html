@@ -4,12 +4,12 @@
 
 <div class="container mt-3">
   <form
-    class="row gy-2 gx-3 align-items-end"
+    class="d-flex mb-3"
     #form="ngForm"
     (ngSubmit)="loadMembers()"
   >
-    <div class="col-auto">
-      <label class="form-label" for="minAge">Age from:</label>
+    <div class="d-flex mx-2">
+      <label class="col-form-label me-2" for="minAge">Age from:</label>
       <input
         type="number"
         class="form-control"
@@ -20,8 +20,8 @@
         placeholder="Age from"
       />
     </div>
-    <div class="col-auto">
-      <label class="form-label" for="maxAge">Age to:</label>
+    <div class="d-flex mx-2">
+      <label class="col-form-label me-2" for="maxAge">Age to:</label>
       <input
         type="number"
         class="form-control"
@@ -32,8 +32,8 @@
         placeholder="Age from"
       />
     </div>
-    <div class="col-auto">
-      <label class="form-label" for="gender">Show:</label>
+    <div class="d-flex mx-2">
+      <label class="col-form-label me-2" for="gender">Show:</label>
       <select
         class="form-select"
         style="width: 130px"
@@ -46,7 +46,7 @@
         </option>
       </select>
     </div>
-    <div class="col-auto">
+    <div class="d-flex mx-2">
       <button type="submit" class="btn btn-primary me-1">Apply Filters</button>
       <button type="button" class="btn btn-info" (click)="resetFilters()">
         Reset Filters
