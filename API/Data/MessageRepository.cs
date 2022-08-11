@@ -1,11 +1,4 @@
-using System.Linq;
-using API.DTOs;
-using API.Entities;
-using API.Helpers;
-using API.Interfaces;
-using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
 {

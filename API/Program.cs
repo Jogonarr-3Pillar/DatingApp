@@ -49,6 +49,8 @@ app.MapHub<PresenceHub>("hubs/presence");
 app.MapHub<MessageHub>("hubs/message");
 app.MapFallbackToController("Index", "FallBack");
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+
 using var scope = app.Services.CreateScope();
 var services = scope.ServiceProvider;
 try

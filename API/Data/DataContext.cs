@@ -1,7 +1,4 @@
-using API.Entities;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
@@ -18,7 +15,6 @@ namespace API.Data
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
