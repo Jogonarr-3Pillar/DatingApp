@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { MessageService } from 'src/app/_services/message.service';
@@ -15,16 +21,20 @@ export class MemberMessagesComponent implements OnInit {
   @Input() username: string;
 
   messageContent: string;
+  loading: boolean = false;
 
   constructor(public messageService: MessageService) {}
 
   ngOnInit(): void {}
 
   sendMessage() {
+    this.loading = true;
+
     this.messageService
       .sendMessage(this.username, this.messageContent)
       .then(() => {
         this.messageForm.reset();
-      });
+      })
+      .finally(() => (this.loading = false));
   }
 }
