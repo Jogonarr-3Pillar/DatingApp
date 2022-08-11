@@ -18,6 +18,7 @@ namespace API.Data
 
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
+            AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -81,7 +82,7 @@ namespace API.Data
             }
         }
     }
-    
+
     public static class UtcDateAnnotation
     {
         private const String IsUtcAnnotation = "IsUtc";
